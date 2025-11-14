@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Informacion</title>
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Poppins:wght@300;600&display=swap" rel="stylesheet">
+<style>
+	.lista-principios li {
+		margin-bottom: 10px;
+	}
+	.lista-principios strong {
+		color: var(--vino);
+	}
+  .principios-interactivos {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+		gap: 15px;
+		margin-top: 1.5rem;
+	}
+	.principio {
+		background: white;
+		padding: 1rem;
+		text-align: center;
+		border-radius: 12px;
+		cursor: pointer;
+		box-shadow: 0 3px 8px rgba(0,0,0,0.2);
+		font-weight: bold;
+		transition: transform 0.3s, background 0.3s;
+	}
+	.principio:hover {
+		background: var(--naranja);
+		transform: translateY(-5px);
+	}
+	.info-principio {
+		margin-top: 2rem;
+		background: #fff4ea;
+		padding: 1.5rem;
+		border-radius: 15px;
+		box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+		text-align: center;
+		min-height: 150px;
+		transition: all 0.3s ease;
+	}
+  .bola-css {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: linear-gradient(95deg, #ff4081, #000000);
+    margin: auto;
+    animation: giroCSS 2s linear infinite;
+  }
+  .modal {
+    display: none;
+    position: fixed;
+    z-index: 999;
+    left: 0; top: 0;
+    width: 100%; height: 100%;
+    background-color: rgba(0,0,0,0.7);
+    justify-content: center;
+    align-items: center;
+  }
+  .modal-contenido {
+    background: #fff;
+    padding: 1.5rem;
+    border-radius: 10px;
+    max-width: 700px;
+    width: 90%;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+    position: relative;
+    animation: aparecerModal 0.3s ease;
+  }
+
+  .modal pre {
+    background: #f5f5f5;
+    padding: 1rem;
+    overflow-x: auto;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    text-align: left;
+  }
+  .cerrar {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: #A04668;
+    transition: 0.3s;
+    }
+  .cerrar:hover {
+    color: #ff00a0;
+  }
+  .explicacion {
+    margin-top: 1rem;
+    background: #fff8f5;
+    padding: 1rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  }
+  .explicacion h4 {
+    color: var(--vino);
+    margin-bottom: 0.5rem;
+  }
+  .explicacion p {
+    font-size: 0.95rem;
+    line-height: 1.5;
+  }
+  .explicacion code {
+    background: #f3e8ff;
+    padding: 2px 5px;
+    border-radius: 5px;
+    color: #6a1b9a;
+    font-weight: bold;
+  }
+	#quiz .boton {
+    display: block;
+    width: 80%;
+    margin: 0.5rem auto;
+    padding: 0.7rem;
+    background: var(--vino);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: transform 0.2s, background 0.3s;
+  }
+	#quiz .boton:hover {
+		background: #b82a5d;
+		transform: scale(1.05);
+	}
+  .bloques-conceptos {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+  }
+
+  .bloque-concepto {
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 1rem 1.2rem;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+  }
+
+  .bloque-concepto:hover {
+    transform: translateY(-5px);
+  }
+
+  .bloque-concepto h3 {
+    color: #7c4dff;
+    margin-bottom: 0.5rem;
+  }
+
+  .bloque-concepto pre {
+    background: #272822;
+    color: #f8f8f2;
+    padding: 0.7rem;
+    border-radius: 8px;
+    overflow-x: auto;
+    font-size: 0.9rem;
+  }
+  .carousel {
+    position: relative;
+    overflow: hidden;
+    margin-top: 2rem;
+  }
+
+  .carousel-inner {
+    display: flex;
+    transition: transform 0.6s ease;
+  }
+
+  .carousel-item {
+    min-width: 100%;
+    box-sizing: border-box;
+    padding: 1rem;
+  }
+
+  .carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: var(--vino);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    font-size: 1.5rem;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    opacity: 0.8;
+    transition: opacity 0.3s;
+    z-index: 2;
+  }
+  .carousel-btn:hover { opacity: 1; }
+  .carousel-btn.prev { left: 10px; }
+  .carousel-btn.next { right: 10px; }
+  @keyframes aparecerModal {
+    from { transform: translateY(-20px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+  }
+  @keyframes giroCSS {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+</style>
+<style>
+#comparacion-svg p {
+  max-width: 750px;
+  margin: 0 auto 2em;
+  font-size: 1.1em;
+  line-height: 1.7em;
+}
+
+.comparador {
+  position: relative;
+  width: 80%;
+  max-width: 750px;
+  margin: 2em auto;
+}
+
+.imagen-contenedor {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  border-radius: 16px;
+
+  height: 400px;
+}
+
+.imagen-fondo {
+  width: 100%;
+  display: block;
+  transition: all 0.3s ease;
+  transform-origin: center;
+}
+
+.svg-superpuesto {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0%;
+  height: 100%;
+  background: #000000b0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: width 0.3s ease;
+}
+
+#sliderComparador {
+  position: absolute;
+  bottom: 0px;
+  left: 0;
+  width: 100%;
+  height: 9px;
+  background: #111;
+  border-radius: 3px;
+  outline: none;
+  cursor: pointer;
+  box-shadow: 0 0 10px ;
+}
+#sliderComparador::-webkit-slider-thumb {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background: #00ffc3;
+  box-shadow: 0 0 15px;
+  transition: transform 0.2s;
+}
+#sliderComparador::-webkit-slider-thumb:hover {
+  transform: scale(1.2);
+}
+
+.texto-explicacion {
+  text-align: left;
+  max-width: 750px;
+  margin: 3em auto 0;
+  line-height: 1.6em;
+}
+.texto-explicacion ul {
+  list-style: none;
+  padding: 0;
+}
+.descripcion {
+  text-align: center;
+  color: #c5c6c7;
+  margin-bottom: 2rem;
+}
+
+.bloque-codigo {
+  border-radius: 10px;
+  padding: 1rem;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 0 10px #45a29e55;
+  transition: transform 0.3s ease;
+}
+
+.bloque-codigo:hover {
+  transform: scale(1.03);
+  box-shadow: 0 0 20px var(--naranja);
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <ul>
+		<li><a href="index.html">Inicio</a></li>
+		<li><a href="galeria.html">Galería</a></li>
+		<li><a href="info.html">Informacion</a></li>
+	</ul>
+</nav>
+
+<header id="inicio">
+	<h1>PIGXEL STUDIO</h1>
+</header>
+
+<section id="aprende" class="seccion">
+  <h2>Aprende sobre animación web</h2>
+  <p>
+    Explora cómo funcionan las animaciones en la web: desde el poder de <strong>CSS</strong> hasta la precisión de <strong>JavaScript</strong> y las librerías como <em>GSAP</em> o <em>Animate.css</em>.
+  </p>
+
+  <div class="carousel">
+    <button class="carousel-btn prev">⟨</button>
+    <div class="carousel-inner">
+
+      <div class="carousel-item active" id="tema-css">
+        <div class="bloques-conceptos"></div>
+          <div class="bloque-concepto"></div>
+      </div>
+
+      <div class="carousel-item" id="tema-js">
+        <div class="bloques-conceptos"></div>
+          <div class="bloque-concepto"></div>
+      </div>
+
+      <div class="carousel-item" id="tema-librerias">
+          <div class="bloques-conceptos"></div>
+            <div class="bloque-concepto"></div>
+      </div>
+
+      <div class="carousel-item" id="tema-OtrasCosas">
+          <div class="bloques-conceptos"></div>
+            <div class="bloque-concepto"></div>
+      </div>
+    
+  </div>
+  <button class="carousel-btn next">⟩</button>
+</section>
+
+<section id="aprende" class="seccion">
+	<h2>Ejemplos de animaciones</h2>
+	<p>
+		La animación en la web combina arte y código. Puedes crear movimiento usando solo <strong>CSS</strong>, manipular elementos en tiempo real con <strong>JavaScript</strong>, o potenciarlo con <strong>librerías externas</strong> como <em>Animate.css</em> y <em>GSAP</em>.
+	</p>
+
+	<div class="principios-interactivos">
+		<div class="principio" onclick="mostrarInfo('css')">Animación en CSS</div>
+		<div class="principio" onclick="mostrarInfo('javascript')">Animación con JavaScript</div>
+		<div class="principio" onclick="mostrarInfo('animate')">Animate.css</div>
+		<div class="principio" onclick="mostrarInfo('gsap')">GSAP</div>
+	</div>
+
+	<div class="info-principio" id="info-principio">
+		<p>Haz clic en un tema para descubrir cómo se anima en la web.</p>
+	</div>
+
+</section>
+<section id="comparacion-svg" class="seccion">
+  <h2>¿Por qué usar SVG en lugar de imágenes tradicionales?</h2>
+  <p>
+    Los gráficos <strong>SVG</strong> son completamente vectoriales —se basan en formas y coordenadas matemáticas—,
+    lo que permite ampliarlos infinitamente sin perder calidad.  
+    En cambio, las imágenes <strong>rasterizadas</strong> como <code>.jpg</code> o <code>.png</code> se componen de píxeles,
+    y al aumentar su tamaño, pierden nitidez y se distorsionan.
+  </p>
+
+  <div class="comparador">
+    <div class="imagen-contenedor">
+      <img src="https://cdn.pixabay.com/photo/2014/11/30/14/11/cat-551554_1280.jpg" 
+           alt="Imagen rasterizada" class="imagen-fondo">
+      <div class="svg-superpuesto">
+        <svg viewBox="0 0 200 200">
+          <defs>
+            <radialGradient id="grad" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stop-color="#00ffc3"/>
+              <stop offset="100%" stop-color="#0078ff"/>
+            </radialGradient>
+          </defs>
+          <circle cx="100" cy="100" r="80" fill="url(#grad)" stroke="#fff" stroke-width="4"/>
+          <text x="100" y="115" text-anchor="middle" fill="#fff" font-size="35" font-family="Verdana">SVG</text>
+        </svg>
+      </div>
+      <input type="range" min="0" max="100" value="0" id="sliderComparador">
+    </div>
+  </div>
+
+  <div class="texto-explicacion">
+    <h3>Ventajas del SVG frente a JPG o PNG</h3>
+    <ul>
+      <li>Escala sin pixelarse: siempre nítido, incluso en pantallas 4K.</li>
+      <li>Se puede modificar con CSS o animar con JavaScript.</li>
+      <li>Ideal para logotipos, íconos e ilustraciones.</li>
+      <li>Archivos ligeros cuando se usan formas simples.</li>
+      <li>Integración directa en el HTML, sin necesidad de imágenes externas.</li>
+    </ul>
+
+  </div>
+</section>
+
+<section class="seccion">
+  <h2>Zona de Código</h2>
+  <p>
+    Bienvenido al laboratorio donde el código cobra vida. Aprende los fundamentos de JavaScript con ejemplos interactivos y estilo arcade.
+  </p>
+
+  <!-- 🧠 Qué es JavaScript -->
+  <div class="bloque-codigo">
+    <h3>¿Qué es JavaScript?</h3>
+    <p>Es el lenguaje que da <strong>vida</strong> a las páginas web. Permite crear movimiento, lógica, y reacciones en tiempo real.</p>
+    <pre><code>// Ejemplo:
+document.body.style.background = "neon";</code></pre>
+  </div>
+
+  <!-- 💡 Variables -->
+  <div class="bloque-codigo">
+    <h3>Variables</h3>
+    <p>Son cajas donde guardas información. Pueden cambiar de valor mientras el programa se ejecuta.</p>
+    <pre><code>let nombre = "Pixel";
+let puntos = 100;
+puntos = puntos + 50;</code></pre>
+  </div>
+
+  <!-- ⌨️ Entrada de datos -->
+  <div class="bloque-codigo">
+    <h3>Entrada de datos</h3>
+    <p>Podemos pedirle datos al jugador (usuario) con <code>prompt()</code> y mostrarlos en pantalla con <code>alert()</code>.</p>
+    <pre><code>let nombre = prompt("¿Cuál es tu nombre?");
+alert("Bienvenido, " + nombre + "!");</code></pre>
+  </div>
+
+  <!-- 🔄 Estructuras secuenciales -->
+  <div class="bloque-codigo">
+    <h3>Estructuras secuenciales</h3>
+    <p>Son instrucciones que se ejecutan una tras otra, como niveles de un juego.</p>
+    <pre><code>let vida = 3;
+vida--;
+console.log("Vidas restantes: " + vida);</code></pre>
+  </div>
+
+  <!-- ⚙️ Condicional simple -->
+  <div class="bloque-codigo">
+    <h3>Estructura condicional simple</h3>
+    <p>Permite tomar decisiones según una condición.</p>
+    <pre><code>if (puntos > 100) {
+  console.log("Subes de nivel!");
+}</code></pre>
+  </div>
+
+  <!-- 🔀 Condicional compuesta -->
+  <div class="bloque-codigo">
+    <h3>Estructura condicional compuesta</h3>
+    <p>Incluye un camino alternativo si la condición no se cumple.</p>
+    <pre><code>if (vida > 0) {
+  console.log("Sigues jugando!");
+} else {
+  console.log("Game Over");
+}</code></pre>
+  </div>
+
+  <!-- 🧩 Condicional anidada -->
+  <div class="bloque-codigo">
+    <h3>Estructura condicional anidada</h3>
+    <p>Permite evaluar varias condiciones dentro de otra.</p>
+    <pre><code>if (puntos > 500) {
+  if (nivel === 5) {
+    console.log("¡Has vencido al jefe final!");
+  }
+}</code></pre>
+  </div>
+
+  <!-- ⚖️ Operadores lógicos -->
+  <div class="bloque-codigo">
+    <h3>Operadores lógicos</h3>
+    <p><strong>&&</strong> (Y) y <strong>||</strong> (O) sirven para combinar condiciones.</p>
+    <pre><code>// Ambos deben cumplirse:
+if (vida > 0 && energia > 50) {
+  console.log("Puedes atacar!");
+}
+
+// Uno de los dos basta:
+if (nivel === 3 || nivel === 4) {
+  console.log("Zona peligrosa!");
+}</code></pre>
+  </div>
+
+  <!-- 🎮 Switch -->
+  <div class="bloque-codigo">
+    <h3>Estructura switch</h3>
+    <p>Permite elegir acciones según un valor exacto, como un menú del juego.</p>
+    <pre><code>let opcion = "jugar";
+
+switch (opcion) {
+  case "jugar":
+    console.log("Iniciando partida...");
+    break;
+  case "salir":
+    console.log("Saliendo del juego...");
+    break;
+  default:
+    console.log("Opción no válida.");
+}</code></pre>
+  </div>
+
+  <!-- 🔁 Ciclos while -->
+  <div class="bloque-codigo">
+    <h3>Ciclo while</h3>
+    <p>Repite un bloque mientras se cumpla una condición.</p>
+    <pre><code>let contador = 0;
+while (contador < 5) {
+  console.log("Intento " + contador);
+  contador++;
+}</code></pre>
+  </div>
+
+  <!-- ♻️ Acumulador -->
+  <div class="bloque-codigo">
+    <h3>Acumulador</h3>
+    <p>Sirve para sumar o reunir valores en un ciclo.</p>
+    <pre><code>let suma = 0;
+for (let i = 1; i <= 5; i++) {
+  suma += i;
+}
+console.log("Total: " + suma);</code></pre>
+  </div>
+
+  <!-- 🔂 do/while -->
+  <div class="bloque-codigo">
+    <h3>Ciclo do/while</h3>
+    <p>Ejecuta al menos una vez antes de verificar la condición.</p>
+    <pre><code>let vida = 3;
+do {
+  console.log("Te queda " + vida + " vidas");
+  vida--;
+} while (vida > 0);</code></pre>
+  </div>
+
+  <!-- 🚀 for -->
+  <div class="bloque-codigo">
+    <h3>Ciclo for</h3>
+    <p>Ideal para repetir acciones un número exacto de veces.</p>
+    <pre><code>for (let i = 0; i < 3; i++) {
+  console.log("Ronda " + (i + 1));
+}</code></pre>
+  </div>
+</section>
+
+<section id="quiz" class="seccion">
+  <h2>Pon a prueba tu conocimiento sobre animación web</h2>
+  <p>Demuestra cuánto sabes de animación con CSS, JavaScript y librerías externas.</p>
+
+  <div id="pregunta"></div>
+  <p id="resultado" style="text-align:center; margin-top:1rem;"></p>
+  <button id="siguiente" class="boton" style="display:none;">Siguiente pregunta ➜</button>
+</section>
+<div id="modalCodigo" class="modal">
+  <div class="modal-contenido">
+    <span class="cerrar" onclick="cerrarModal()">&times;</span>
+    <h3>Código y explicación</h3>
+    
+    <pre><code id="codigo-demo"></code></pre>
+    
+    <div id="explicacion-demo" class="explicacion">
+
+    </div>
+  </div>
+</div>
+
+<footer>
+	<p>© 2025 Pigxel Studio — Animar es dar vida </p>
+</footer>
+
+</body>
+<script src="js/info/modal.js" ></script>
+<script src="js/info/principios.js" ></script>
+<script src="js/info/quiz.js" ></script>
+<script src="js/info/carrusel.js" ></script>
+<script>
+const slider = document.getElementById("sliderComparador");
+const svgCapa = document.querySelector(".svg-superpuesto");
+const imagen = document.querySelector(".imagen-fondo");
+
+slider.addEventListener("input", () => {
+  const valor = slider.value;
+  svgCapa.style.width = valor + "%";
+  // A medida que se desliza, la imagen se pixela y hace zoom
+  const escala = 1 + (valor / 150);
+  const desenfoque = valor / 10;
+  imagen.style.transform = `scale(${escala})`;
+  imagen.style.filter = `blur(${desenfoque}px) contrast(${100 - valor / 3}%)`;
+});
+</script>
+</html>

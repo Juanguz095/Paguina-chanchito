@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="css/style.css">
+	<title>Galería</title>
+	<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Poppins:wght@300;600&display=swap" rel="stylesheet">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+	<style>
+		:root {
+			--neon: #00ffcc;
+			--bg-dark: #111;
+			--bg-card: #1c1c1c;
+			--txt-light: #fff;
+			--accent: #ff00a0;
+		}
+		section {
+			padding: 2rem 1rem;
+			max-width: 1000px;
+			margin: auto;
+		}
+		section h2 {
+			text-align: center;
+			font-family: 'Press Start 2P', cursive;
+			color: var(--accent);
+			margin-bottom: 1rem;
+			font-size: 1.2rem;
+		}
+		.galeria {
+			display: grid;
+			grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+			gap: 1.5rem;
+		}
+		.tarjeta {
+			background: var(--txt-light);
+			padding: 1.2rem;
+			border-radius: 15px;
+			text-align: center;
+			box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+			transition: transform 0.3s;
+		}
+		.tarjeta:hover { transform: translateY(-5px); }
+
+		.demostracion {
+			margin-top: 1rem;
+			background: #222;
+			height: 150px;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			border-radius: 10px;
+			overflow: hidden;
+		}
+		button {
+			margin-top: 1rem;
+			padding: 0.5rem 1rem;
+			border: none;
+			background: var(--bg-dark);
+			color: #a79898;
+			border-radius: 5px;
+			cursor: pointer;
+			font-weight: bold;
+			transition: 0.2s;
+		}
+		button:hover { background: #294747; }
+		#editor-modal {
+			position: fixed;
+			top: 0; left: 0;
+			width: 100%; height: 100%;
+			background: rgba(0,0,0,0.9);
+			display: none;
+			align-items: center;
+			justify-content: center;
+			color: #0ff;
+			font-family: 'Poppins', sans-serif;
+			z-index: 999;
+		}
+		#editor-panel {
+			background: #111;
+			padding: 2rem;
+			border-radius: 15px;
+			box-shadow: 0 0 20px #4fad8e;
+			text-align: center;
+			width: 400px;
+		}
+		#anim-preview {
+			margin: 1rem auto;
+			height: 150px;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
+		input, select {
+			width: 100%;
+			background: #000;
+			color: #0ff;
+			border: 1px solid #0ff;
+			padding: 5px;
+			margin-top: 4px;
+		}
+		.tutorial {
+			background: radial-gradient(circle at top, #1a0033 0%, #000 80%);
+			color: #fff;
+			padding: 5rem 2rem;
+			border-radius: 2rem;
+			text-align: center;
+			margin-top: 4rem;
+			box-shadow: 0 0 25px #7c4dff40;
+			}
+
+			.tutorial h2 {
+			font-size: 2.4rem;
+			color: #ff80ab;
+			}
+
+			.intro-tutorial {
+			color: #ddd;
+			font-size: 1.1rem;
+			margin-bottom: 2rem;
+			}
+
+			.paso {
+			display: none;
+			animation: aparecer 0.6s ease;
+			}
+
+			.paso.activo {
+			display: block;
+			}
+
+			@keyframes aparecer {
+			from { opacity: 0; transform: translateY(25px); }
+			to { opacity: 1; transform: translateY(0); }
+			}
+
+			pre {
+			background: #1e1e1e;
+			color: #00ff88;
+			padding: 1.3rem;
+			border-radius: 12px;
+			text-align: left;
+			width: 70%;
+			margin: 1rem auto;
+			font-size: 0.95rem;
+			box-shadow: inset 0 0 10px #7c4dff55;
+			}
+
+			.tooltip {
+			margin-top: 1rem;
+			background: #ff4081;
+			color: #fff;
+			padding: 0.6rem 1rem;
+			border-radius: 8px;
+			display: inline-block;
+			font-size: 0.9rem;
+			animation: parpadeo 3s infinite alternate;
+			}
+
+			@keyframes parpadeo {
+			from { opacity: 0.8; }
+			to { opacity: 1; box-shadow: 0 0 15px #ff4081; }
+			}
+
+			.controles-asistente {
+			margin-top: 3rem;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			gap: 1rem;
+			}
+			.barra-progreso {
+			width: 50%;
+			background: #222;
+			height: 12px;
+			border-radius: 6px;
+			overflow: hidden;
+			position: relative;
+			}
+
+			#progreso {
+			height: 12px;
+			background: linear-gradient(90deg, #00ff88, #ff4081);
+			width: 20%;
+			transition: width 0.4s ease;
+			}
+
+			.demo-final {
+			margin-top: 2rem;
+			}
+
+			.caja-demo {
+			width: 100px;
+			height: 100px;
+			background: linear-gradient(135deg, #ff4081, #7c4dff);
+			border-radius: 20px;
+			margin: 0 auto;
+			animation: flotar 2s ease-in-out infinite alternate;
+			}
+
+			@keyframes flotar {
+			from { transform: translateY(0px); }
+			to { transform: translateY(-15px); }
+			}
+#tutorial {
+  background: #1c1c1c;
+  color: #fff;
+  padding: 3em;
+  border-radius: 16px;
+  margin: 0 auto;
+  text-align: center;
+  box-shadow: 0 0 20px #00ffc3;
+}
+#contenedor-tutorial {
+  position: relative;
+  overflow: hidden;
+  padding: 1em;
+}
+.demo {
+  margin: 1em auto;
+  height: 100px;
+}
+.caja {
+  width: 80px;
+  height: 80px;
+  margin: auto;
+  border-radius: 10px;
+}
+.css-demo { background: #ff6f61; }
+.js-demo { background: #4ade80; }
+.anime-demo { background: #00c3ff; }
+.gsap-demo { background: #ffd166; }
+.oculto { display: none; }
+.botones-tutorial {
+  margin-top: 1em;
+  display: flex;
+  justify-content: space-between;
+}
+pre {
+  background: #2a2a2a;
+  padding: 1em;
+  border-radius: 10px;
+  overflow-x: auto;
+  text-align: left;
+}
+	</style>
+</head>
+<body>
+
+	<nav class="navbar">
+	<ul>
+		<li><a href="index.html">Inicio</a></li>
+		<li><a href="galeria.html">Galería</a></li>
+		<li><a href="info.html">Informacion</a></li>
+	</ul>
+	</nav>
+
+	<header>
+	<h1>PIGXEL STUDIO</h1>
+	</header>
+
+	<section>
+		<h2>Laboratorio de Animaciones</h2>
+		<div class="galeria">
+
+			<div class="tarjeta" data-anim="rebote">
+				<h3>Rebote básico</h3>
+				<p>Principio de squash & stretch con control.</p>
+				<div class="demostracion">
+					<div class="pelota" style="width:50px;height:50px;background:#00ffcc;border-radius:50%;"></div>
+				</div>
+			</div>
+
+			<div class="tarjeta" data-anim="color">
+				<h3>Cambio de color</h3>
+				<p>Transición continua entre colores.</p>
+				<div class="demostracion">
+					<div class="caja" style="width:80px;height:80px;background:#ff0080;"></div>
+				</div>
+			</div>
+
+			<div class="tarjeta" data-anim="desvanecimiento">
+			<h3>Desvanecimiento</h3>
+			<p>Muestra cómo controlar la opacidad para crear entradas y salidas suaves.</p>
+			<div class="demostracion" id="demo-desvanecimiento">
+				<div class="figura" style="width:80px; height:80px; background:#ff6699; border-radius:10px;"></div>
+			</div>
+			</div>
+
+			<div class="tarjeta" data-anim="escalaRitmica">
+			<h3>Escala rítmica</h3>
+			<p>Ejemplo del principio de anticipación mediante cambio de tamaño.</p>
+			<div class="demostracion" id="demo-escala">
+				<div class="figura" style="width:70px; height:70px; background:#00ffaa; border-radius:50%;"></div>
+			</div>
+			</div>
+
+			<div class="tarjeta" data-anim="giroDesplazamiento">
+			<h3>Giro y desplazamiento</h3>
+			<p>Combina rotación con movimiento horizontal fluido.</p>
+			<div class="demostracion" id="demo-giro">
+				<div class="figura" style="width:60px; height:60px; background:#ffcc00; border-radius:50%;"></div>
+			</div>
+			</div>
+
+			<div class="tarjeta" data-anim="onda">
+			<h3>Movimiento ondulatorio</h3>
+			<p>Simula un vaivén continuo, ideal para efectos de flotación.</p>
+			<div class="demostracion" id="demo-onda">
+				<div class="figura" style="width:100px; height:10px; background:#00bfff;"></div>
+			</div>
+			</div>
+
+			<div class="tarjeta" data-anim="reboteLateral">
+			<h3>Rebote lateral</h3>
+			<p>Simula colisiones horizontales con cambios de dirección.</p>
+			<div class="demostracion" id="demo-rebote-lateral">
+				<div class="figura" style="width:40px; height:40px; background:#ff0066; border-radius:50%;"></div>
+			</div>
+			</div>
+			<div class="add-animation-panel">
+				<h3>Crear nueva animación</h3>
+
+				<label>Objeto</label>
+				<select id="new-shape">
+					<option value="cuadrado">Cuadrado</option>
+					<option value="circulo">Círculo</option>
+					<option value="triangulo">Triángulo</option>
+					<option value="imagen">Imagen</option>
+				</select>
+				<label>Propiedad</label>
+				<select id="new-property">
+					<option value="translateX">Mover en X</option>
+					<option value="translateY">Mover en Y</option>
+					<option value="scale">Escala</option>
+					<option value="rotate">Rotar</option>
+					<option value="backgroundColor">Color</option>
+				</select>
+
+				<label>🎚 Valor inicial</label>
+				<input type="text" id="new-from" placeholder="Ej: 0 o #00ffcc">
+
+				<label>🎚 Valor final</label>
+				<input type="text" id="new-to" placeholder="Ej: 250 o #ff0066">
+
+				<label>Duración (ms)</label>
+				<input type="number" id="new-duration" value="1000">
+
+				<button id="btn-add-animation">Crear animación</button>
+			</div>
+		</div>
+	</section>
+<section id="tutorial" class="seccion">
+  <h2>🪄 Crea tu primera animación paso a paso</h2>
+  <p>Aprende las distintas formas de animar en la web con un recorrido guiado. ¡Explora y experimenta!</p>
+
+  <div id="contenedor-tutorial">
+    <div id="paso-tutorial">
+      <h3>Paso 1: Animar con CSS 🎨</h3>
+      <p>
+        El método más básico: usando <strong>propiedades CSS</strong> como <code>transform</code>, <code>transition</code> o <code>@keyframes</code>.
+        Ideal para efectos simples, hover o transiciones elegantes.
+      </p>
+      <div class="demo">
+        <div class="caja css-demo"></div>
+      </div>
+      <pre><code>
+.caja {
+  width: 80px;
+  height: 80px;
+  background: #ff6f61;
+  transition: transform 0.8s ease;
+}
+.caja:hover {
+  transform: rotate(45deg) scale(1.3);
+}
+      </code></pre>
+    </div>
+
+    <div id="paso-tutorial" class="oculto">
+      <h3>Paso 2: Animar con JavaScript ⚙️</h3>
+      <p>
+        Con JavaScript puedes tener <strong>control total del movimiento</strong>.  
+        Usa <code>setInterval</code> o <code>requestAnimationFrame()</code> para animar paso a paso.
+      </p>
+      <div class="demo">
+        <div class="caja js-demo"></div>
+      </div>
+      <pre><code>
+let caja = document.querySelector(".js-demo");
+let pos = 0;
+function mover() {
+  pos += 2;
+  if (pos > 200) pos = 0;
+  caja.style.transform = `translateX(${pos}px)`;
+  requestAnimationFrame(mover);
+}
+mover();
+      </code></pre>
+    </div>
+
+    <div id="paso-tutorial" class="oculto">
+      <h3>Paso 3: Usar Anime.js 💫</h3>
+      <p>
+        <strong>Anime.js</strong> simplifica las animaciones con una sintaxis clara y potente.  
+        Puedes animar propiedades, SVG, y hasta rutas.
+      </p>
+      <div class="demo">
+        <div class="caja anime-demo"></div>
+      </div>
+      <pre><code>
+anime({
+  targets: '.anime-demo',
+  translateX: 250,
+  rotate: '1turn',
+  backgroundColor: '#00c3ff',
+  duration: 2000,
+  easing: 'easeInOutQuad',
+  loop: true
+});
+      </code></pre>
+    </div>
+
+    <div id="paso-tutorial" class="oculto">
+      <h3>Paso 4: Usar GSAP 🚀</h3>
+      <p>
+        <strong>GSAP</strong> (GreenSock Animation Platform) ofrece control avanzado,  
+        ideal para proyectos grandes o animaciones sincronizadas.
+      </p>
+      <div class="demo">
+        <div class="caja gsap-demo"></div>
+      </div>
+      <pre><code>
+gsap.to(".gsap-demo", {
+  x: 200,
+  rotation: 360,
+  backgroundColor: "#ffd166",
+  duration: 1.5,
+  repeat: -1,
+  yoyo: true
+});
+      </code></pre>
+    </div>
+
+    <div id="paso-tutorial" class="oculto">
+      <h3>Paso 5: Animar SVG, imágenes o videos 🖼️</h3>
+      <p>
+        También puedes animar elementos gráficos.  
+        Por ejemplo, un SVG puede escalarse o un video puede reaccionar al hacer scroll.
+      </p>
+      <div class="demo">
+        <svg width="100" height="100" viewBox="0 0 100 100">
+          <circle cx="50" cy="50" r="30" fill="#4ade80">
+            <animate attributeName="r" from="10" to="30" dur="1s" repeatCount="indefinite" />
+          </circle>
+        </svg>
+      </div>
+      <pre><code>
+<svg width="100" height="100">
+  <circle cx="50" cy="50" r="30" fill="#4ade80">
+    <animate attributeName="r" from="10" to="30" dur="1s" repeatCount="indefinite" />
+  </circle>
+</svg>
+      </code></pre>
+    </div>
+
+    <div class="botones-tutorial">
+      <button id="anterior">⬅️ Anterior</button>
+      <button id="siguiente">Siguiente ➡️</button>
+    </div>
+  </div>
+</section>
+
+	<footer>
+		<p>© 2025 Pigxel Studio — Animar es dar vida</p>
+	</footer>
+
+	<div id="editor-modal">
+		<div id="editor-panel">
+			<h2>Editor de Animación</h2>
+			<div id="anim-preview"></div>
+			<label>Duración (ms):</label>
+			<input id="edit-duration" type="number" min="100" max="10000" step="100" value="1000"><br><br>
+			<label>Easing:</label>
+			<select id="edit-easing">
+				<option value="linear">linear</option>
+				<option value="easeInOutQuad">easeInOutQuad</option>
+				<option value="easeOutElastic(1, .5)">easeOutElastic</option>
+				<option value="easeOutBounce">easeOutBounce</option>
+			</select><br><br>
+			<div style="display:flex;justify-content:space-between;margin-top:1rem;">
+				<button id="guardar-cambios">Guardar</button>
+				<button id="cerrar-editor">Cerrar</button>
+			</div>
+			<label>Color principal:</label>
+			<input id="edit-color" type="color" value="#00ffcc"><br><br>
+			<label>Dirección:</label>
+			<select id="edit-direction">
+				<option value="normal">normal</option>
+				<option value="reverse">reverse</option>
+				<option value="alternate">alternate</option>
+			</select><br><br>
+		</div>
+	</div>
+<script>
+
+const resolveTargetSelector = t => typeof t === 'string' ? document.querySelector(t) : t instanceof Element ? t : null;
+
+let animaciones = {};
+let configAnimaciones = {
+  rebote: {
+    targets: '.tarjeta[data-anim="rebote"] .pelota',
+    translateY: [
+      { value: 80, duration: 400, easing: 'easeInQuad' },
+      { value: 0, duration: 600, easing: 'easeOutBounce' }
+    ],
+    loop: true
+  },
+  color: {
+    targets: '.tarjeta[data-anim="color"] .caja',
+    backgroundColor: ['#ff0080','#00ffff','#00ff00','#ffcc00','#ff0080'],
+    duration: 4000,
+    easing: 'linear',
+    loop: true
+  },
+  desvanecimiento: {
+    targets: '#demo-desvanecimiento .figura',
+    opacity: [
+      { value: 0, duration: 1000, easing: 'easeOutSine' },
+      { value: 1, duration: 1000, easing: 'easeInSine' }
+    ],
+    loop: true
+  },
+  escalaRitmica: {
+    targets: '#demo-escala .figura',
+    scale: [
+      { value: 0.5, duration: 500, easing: 'easeInOutQuad' },
+      { value: 1.2, duration: 500, easing: 'easeInOutQuad' },
+      { value: 1.0, duration: 400, easing: 'easeInOutQuad' }
+    ],
+    loop: true
+  },
+  giroDesplazamiento: {
+    targets: '#demo-giro .figura',
+    translateX: [
+      { value: 100, duration: 1500, easing: 'easeInOutSine' },
+      { value: 0, duration: 1500, easing: 'easeInOutSine' }
+    ],
+    rotate: '1turn',
+    loop: true
+  },
+  onda: {
+    targets: '#demo-onda .figura',
+    translateY: [
+      { value: -20, duration: 800, easing: 'easeOutSine' },
+      { value: 20, duration: 800, easing: 'easeInSine' }
+    ],
+    loop: true
+  },
+  reboteLateral: {
+    targets: '#demo-rebote-lateral .figura',
+    translateX: [
+      { value: 200, duration: 800, easing: 'easeOutQuad' },
+      { value: 0, duration: 800, easing: 'easeInQuad' }
+    ],
+    scaleX: [
+      { value: 0.7, duration: 400, easing: 'easeOutQuad' },
+      { value: 1.0, duration: 400, easing: 'easeInQuad' }
+    ],
+    loop: true
+  }
+};
+
+function iniciar() {
+
+  for (let k in configAnimaciones) {
+    const conf = { ...configAnimaciones[k] };
+    const el = resolveTargetSelector(conf.targets);
+    if (el) conf.targets = el;
+    try { animaciones[k] = anime(conf); } catch(e){}
+  }
+}
+iniciar();
+
+function colocarBotonEditar() {
+  document.querySelectorAll('.tarjeta').forEach(card => {
+    if (card.querySelector('.btn-editar')) return;
+    const btn = document.createElement('button');
+    btn.className = 'btn-editar';
+    btn.textContent = 'Editar Animación';
+    btn.onclick = () => abrirEditor(card.dataset.anim, card);
+    card.appendChild(btn);
+  });
+}
+colocarBotonEditar();
+
+const modal = document.getElementById('editor-modal');
+const preview = document.getElementById('anim-preview');
+let animActual = null;
+let tipoActual = null;
+
+function abrirEditor(animKey, card) {
+  tipoActual = animKey;
+  const conf = configAnimaciones[animKey];
+  if (!conf) return alert('Sin configuración');
+  modal.style.display = 'flex';
+  preview.innerHTML = '';
+  const original = card?.querySelector('.demostracion').firstElementChild?.cloneNode(true) || document.createElement('div');
+  preview.appendChild(original);
+
+  const color = Array.isArray(conf.backgroundColor) ? conf.backgroundColor[0] : rgbToHex(getComputedStyle(original).backgroundColor);
+  document.getElementById('edit-duration').value = conf.duration || conf.translateY?.[0]?.duration || 1000;
+  document.getElementById('edit-easing').value = conf.easing || 'linear';
+  document.getElementById('edit-color').value = color;
+  document.getElementById('edit-direction').value = conf.direction || 'normal';
+
+  const confPreview = { ...conf, targets: original, loop: true };
+  if (animActual) animActual.pause();
+  animActual = anime(confPreview);
+}
+
+document.getElementById('guardar-cambios').onclick = () => {
+  if (!tipoActual) return;
+  const dur = +document.getElementById('edit-duration').value || 1000;
+  const easing = document.getElementById('edit-easing').value;
+  const color = document.getElementById('edit-color').value;
+  const direction = document.getElementById('edit-direction').value;
+
+  const conf = configAnimaciones[tipoActual];
+  conf.duration = dur;
+  conf.easing = easing;
+  conf.direction = direction;
+
+  ['translateY','translateX','opacity','rotate','scale','scaleX','scaleY'].forEach(prop=>{
+    if (Array.isArray(conf[prop])) {
+      conf[prop] = conf[prop].map(kf=>({ ...kf, duration: dur, easing }));
+    }
+  });
+
+  if (conf.backgroundColor) {
+    if (Array.isArray(conf.backgroundColor)) conf.backgroundColor[0] = color;
+    else conf.backgroundColor = [color];
+  } else {
+    const el = resolveTargetSelector(conf.targets);
+    if (el) el.style.background = color;
+  }
+
+  const el = resolveTargetSelector(conf.targets);
+  const nueva = { ...conf, targets: el };
+  animaciones[tipoActual]?.pause?.();
+  animaciones[tipoActual] = anime(nueva);
+
+  localStorage.setItem('configAnimaciones', JSON.stringify(configAnimaciones));
+  alert(`Cambios aplicados a '${tipoActual}'`);
+  modal.style.display = 'none';
+  animActual?.pause?.();
+};
+
+document.getElementById('cerrar-editor').onclick = () => {
+  modal.style.display = 'none';
+  animActual?.pause?.();
+};
+
+document.getElementById('btn-add-animation').onclick = () => {
+  const prop = document.getElementById('new-property').value;
+  const from = document.getElementById('new-from').value;
+  const to = document.getElementById('new-to').value;
+  const dur = +document.getElementById('new-duration').value || 1000;
+  const shape = document.getElementById('new-shape').value;
+
+  const galeria = document.querySelector('.galeria');
+  const panel = document.querySelector('.add-animation-panel');
+  const nuevaTarjeta = document.createElement('div');
+  nuevaTarjeta.classList.add('tarjeta');
+  const index = document.querySelectorAll('.tarjeta').length + 1;
+  const id = `custom_${index}-target`;
+
+  let objHTML = '';
+  if (shape === 'cuadrado') objHTML = `<div id="${id}" class="objeto" style="width:60px;height:60px;background:#00ffcc;border-radius:10px;"></div>`;
+  else if (shape === 'circulo') objHTML = `<div id="${id}" class="objeto" style="width:60px;height:60px;background:#ffcc00;border-radius:50%;"></div>`;
+  else if (shape === 'triangulo') objHTML = `<div id="${id}" class="objeto" style="width:0;height:0;border-left:30px solid transparent;border-right:30px solid transparent;border-bottom:60px solid #ff00ff;"></div>`;
+  else objHTML = `<img id="${id}" src="https://cdn-icons-png.flaticon.com/512/833/833472.png" width="60">`;
+
+  nuevaTarjeta.innerHTML = `
+    <h3>Animación personalizada ${index}</h3>
+    <p>${prop} de ${from || 0} a ${to || 100}</p>
+    <div class="demostracion"><div>${objHTML}</div></div>
+  `;
+  galeria.insertBefore(nuevaTarjeta, panel);
+
+  const selector = `#${id}`;
+
+  const animConf = {
+    targets: selector,
+    duration: dur,
+    easing: 'easeInOutSine', 
+    loop: true,
+    [prop]: [parseFloat(from) || 0, parseFloat(to) || 100]
+  };
+
+  configAnimaciones[`custom_${index}`] = animConf;
+  animaciones[`custom_${index}`] = anime({ ...animConf, targets: document.querySelector(selector) });
+
+  nuevaTarjeta.dataset.anim = `custom_${index}`;
+  const btn = document.createElement('button');
+  localStorage.setItem('configAnimaciones', JSON.stringify(configAnimaciones));
+  alert(`Animación ${index} creada`);
+};
+
+function rgbToHex(rgb) {
+  const m = (rgb || '').match(/\d+/g);
+  if (!m) return '#000000';
+  return `#${(+m[0]).toString(16).padStart(2, '0')}${(+m[1]).toString(16).padStart(2, '0')}${(+m[2]).toString(16).padStart(2, '0')}`;
+}
+</script>
+<!--nuevo , wizard para crear animacion-->
+<script>
+const pasos = document.querySelectorAll("#paso-tutorial");
+let pasoActual = 0;
+mostrarPaso(pasoActual);
+
+document.getElementById("siguiente").addEventListener("click", () => {
+  if (pasoActual < pasos.length - 1) {
+    pasos[pasoActual].classList.add("oculto");
+    pasoActual++;
+    mostrarPaso(pasoActual);
+  }
+});
+
+document.getElementById("anterior").addEventListener("click", () => {
+  if (pasoActual > 0) {
+    pasos[pasoActual].classList.add("oculto");
+    pasoActual--;
+    mostrarPaso(pasoActual);
+  }
+});
+
+function mostrarPaso(i) {
+  pasos[i].classList.remove("oculto");
+}
+</script>
+
+</body>
+</html>

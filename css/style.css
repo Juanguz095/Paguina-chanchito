@@ -1,223 +1,117 @@
-@font-face {
-	font-family: "terminal"; 
-	src: url("fonts/terminal-grotesque_open.otf") format("opentype");
+:root {
+  --rosa: #ff00a0;
+  --naranja: #FFB17A;
+  --vino: #A04668;
+  --cian: #00ffcc;
+  --fondo: linear-gradient(#FFB17A, #A04668);
 }
-@font-face {
-	font-family: "degheest"; 
-	src: url("fonts/Director-Regular.woff") format("woff");
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Poppins", sans-serif;
+  background: var(--fondo);
+  background-attachment: fixed;
+  color: #3b202b;
+  scroll-behavior: smooth;
 }
-
-html {
-	scroll-behavior: smooth;
-}
-
-body { 
-	font-family: "degheest", serif; 
-	margin: 0;
-	padding: 0;
-	background: linear-gradient(to right, #cfc2c2, #E0E2DB, #E0E2DB, #E0E2DB, #E0E2DB, #E0E2DB);
-	color: #2E3532;
-}
-
-* { 
-	box-sizing: border-box;
-	scrollbar-color: #8B2635 #E0E2DB;
-}
-
-*::-webkit-scrollbar { width: 15px; }
-*::-webkit-scrollbar-track { background: #E0E2DB; }
-*::-webkit-scrollbar-thumb { background-color: #8B2635; border: transparent; }
-
-img { max-width: 100% }
-
 nav {
-	display: flex;
-	flex-wrap: wrap;
-	text-align: right;
-	justify-content: right;
+  position: sticky;
+  top: 0;
+  background: rgba(255,255,255,0.2);
+  backdrop-filter: blur(8px);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+  z-index: 10;
 }
-
-main {
-	margin: 10px auto;
-	max-width: 60rem;
+nav ul {
+  display: flex;
+  justify-content: center;
+  list-style: none;
+  gap: 30px;
+  padding: 10px;
+  margin: 0;
 }
-
-section {
-	margin: 2em auto;
-	padding: 1em 2em;
-	border: 1px dashed #A9ABA1;
-	outline: 1px dotted #A9ABA1;
-	outline-offset: 5px;
-	max-width: calc(100% - 10px);
+nav a {
+  color: #e76d6d;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 1.1em;
+  transition: color 0.3s;
 }
-
-nav a, .up a {
-	color: #8B2635;
-	display: block;
-	border: 1px #8B2635 solid;
-	margin: 10px;
-	padding: 20px 5px 2px 50px;
-	text-decoration: none;
-	font-size: 30px;
-	background-color: rgb(0,0,0,0);
+nav a:hover {
+  color: var(--vino);
 }
-
-hr {
-	border: none;
-	border-top: 1px solid #2E3532;
-}
-
+/* Encabezado */
 header {
-	font-size: 50px;
-	margin: 10px;
-	display: flex;
-	justify-content: space-between;
-	font-family: 'terminal';
-	font-weight: normal;
-	color: #8B2635;
-	max-width: calc(100% - 20px);
+  text-align: center;
+  padding: 3rem 1rem;
+  position: relative;
+}
+header h1 {
+  font-family: 'Press Start 2P', cursive;
+  color: var(--vino);
+  text-shadow: 0 0 8px var(--naranja);
+  font-size: 2.6rem;
+	font-weight: bold;
+	color: #463239;
+	line-height: 1.2;
+}
+header p {
+  color: #fff;
+  font-size: 1.1rem;
+  margin-top: 10px;
 }
 
-header div { margin: 20px 10px 0 20px; text-shadow: 3px 3px #A9ABA1; }
-
-h1, h2, h3, h4, h5, h6, p, table, details, cite, pre, blockquote {
-	margin: 1rem 0;
+/* Secciones */
+.seccion {
+  max-width: 1000px;
+  margin: 2rem auto;
+  background: #f9dcc4;
+  padding: 2rem;
+  border-radius: 20px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+.seccion h2 {
+  font-family: 'Press Start 2P', cursive;
+  color: var(--vino);
+  text-align: center;
+  font-size: 1rem;
+  margin-bottom: 1.5rem;
+}
+.demostracion {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 150px;
+  background: #fff4ea;
+  border-radius: 10px;
+  margin-top: 1rem;
+  position: relative;
+  overflow: hidden;
 }
 
-h1, h2, h3, a { font-family: 'terminal'; font-weight: normal; }
-
-a { color: #8B2635; padding: 2px 4px; font-size: 1.25em; }
-
-ul, ol {
-	margin: 1rem 0 1rem 1.5rem;
+.boton {
+  display: block;
+  margin: 10px auto;
+  padding: 10px 20px;
+  background: var(--vino);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background 0.3s;
+}
+.boton:hover {
+  background: #6d324b;
 }
 
-dl { margin: 1rem 0; }
-
-dt { 
-	background: linear-gradient(to right, #2E3532, #E0E2DB);
-	padding: 0.25rem 0.5rem;
-	color: #E0E2DB;
+footer {
+  text-align: center;
+  padding: 2rem;
+  color: #fff;
+  font-size: 0.9rem;
 }
-
-dd { padding: 1rem; }
-
-ul ul, ol ol { 
-	margin: 0 0 0 2rem;
-}
-
-p, table,  ul, ol, dl {
-	font-size: 1rem;
-	line-height: 1.5;
-}
-
-a:hover { 
-	background-color: #8B2635;
-	color:#E0E2DB;
-}
-
-h6 { font-size: 1em; }
-h5 { font-size: 1.25em; }
-h4 { font-size: 1.5em; }
-h3 { font-size: 2.5em; }
-h2 { font-size: 3em; }
-h1 { font-size: 3.75em; text-align: center; }
-
-blockquote {
-	border-left: #8B2635 3px solid;
-	padding: 0 1rem;
-}
-
-cite { 
-	display: block;
-	text-align: right;
-}
-
-code, pre {
-	background-color: #2E3532;
-	color: #E0E2DB;
-}
-
-details { border: 1px solid; }
-
-code { 
-	font-family: 'Courier New', monospace; 
-	padding: 2px 4px;
-}
-
-details, pre {
-	padding: 1em;
-}
-
-pre { overflow-x: auto; }
-
-details p { margin: 0.5rem 0 0 2rem; }
-
-table {	border: 3px solid #2E3532; margin: 1rem auto; }
-tr, td, th { border: 1px solid #2E3532; }
-td, th { padding: 0.5rem }
-
-figure {  display: table; margin: 1rem; }
-
-figure img { margin: 5px auto; }
-
-figcaption { 
-	display: table-caption;
-    caption-side: bottom;
-    text-align: center;
-}
-
-footer { 
-	font-size: 0.8em;
-	text-align: center; 
-	padding: 5px 10px;
-	margin: 2rem;
-}
-
-.up { position: fixed;
-	bottom: 10px; right: 10px; }
-
-.flex-box {
-    display:flex;
-    flex-wrap:wrap;
-    margin: 0 auto;
-	padding: 0;
-	align-items: flex-start;
-}
-
-.flex-box section {
-	margin: 1em;
-	}
-
-.full { flex: 1 1 100%;}
-.half { flex: 1 1 calc(50% - 2em); }
-.third { flex: 1 1 calc(33% - 2em); }
-.twothird { flex: 1 1 calc(66% - 2em); }
-.quarter { flex: 1 1 calc(25% - 2em); }
-.threequarter { flex: 1 1 calc(75% - 2em); }
-
-
-@media screen and (max-width: 1270px){
-	.up { position: static; width: fit-content; margin: 10px auto; }
-}
-
-@media screen and (max-width: 700px){
-	header { flex-wrap: wrap; }
-	header div { margin: 5px; }
-	nav a {
-		margin: 5px;
-		padding: 15px 5px 2px 30px;
-		text-decoration: none;
-		font-size: 24px;
-	}
-	section {
-		margin: 1em auto;
-		padding: 0.5em 1em;
-	}
-	ul, ol {
-		margin: 1rem 0 1rem 0.5rem;
-	}
-	ul ul, ol ol { 
-		margin: 0 0 0 1rem;
-	}
+footer a {
+  color: var(--vino);
+  text-decoration: none;
 }

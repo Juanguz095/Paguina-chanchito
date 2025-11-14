@@ -1,130 +1,186 @@
-<!DOCTYPE html>
-<html>
+<!DOCTYPE html> 
+<html lang="es">
 <head>
-	<title> * Your Site Here * </title>
-	<link href="css/style.css" rel="stylesheet" type="text/css" media="all">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta charset="utf-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pigxel Studio — Animación y Diseño</title>
+<meta name="description" content="Pigxel Studio: Portafolio de animación gráfica y creatividad digital.">
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Poppins:wght@300;600;800&display=swap" rel="stylesheet">
+<link href="css/index.css" rel="stylesheet">
+<style>
+  .desvanecer {
+    opacity: 0;
+    transition: opacity 0.8s ease;
+  }
+</style>
 </head>
-
 <body>
-
-<header id="top">
-
-<div>site name</div>
-
-<nav>
-	<a href="">link</a>
-	<a href="">link</a>
-	<a href="">link</a>
-	<a href="">link</a>
-	<a href="">link</a>
-	<a href="">longer link</a>
-	<a href="">link</a>
-	<a href="">link</a>
-	<a href="">link</a>
-</nav>
-
-</header>
-
-
-<main>
-
-<h1>Heading 1</h1>
-
-<section> 
-
-	<h2>Heading 2</h2>
-	<h3>Heading 3</h3>
-	<h4>Heading 4</h4>
-	<h5>Heading 5</h5>
-	<h6>Heading 6</h6>
-	
-	<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum cursus, arcu ut gravida aliquet, massa ante dictum justo, sit amet egestas lorem dolor sed velit. Mauris in laoreet lacus. Mauris id ipsum massa. Phasellus accumsan pulvinar tellus, ut auctor tellus. Curabitur a purus placerat, pharetra ex vel, accumsan velit. Interdum et malesuada fames ac ante ipsum primis in faucibus. Donec vehicula, elit non varius consectetur, lacus est finibus mauris, convallis fringilla felis nunc vel lorem. Maecenas ornare augue sapien.</p>
-	
-	<hr>
-
-	<p>
-		<strong>This is strong,</strong>
-		this is normal,
-		<em>and this is emphasized!</em>
-		<a href="">This is a link.</a>
-		<sup>This is superscript;</sup>
-		<sub>this is subscript.</sub>
-		<code>This is code.</code>
-		<s>This is strikethrough.</s>
-	</p>
-
-	<ul>
-		<li>Unordered list item 1</li>
-		<li>Unordered list item 2
-		<ul>
-			<li>Nested list</li>
-		</ul>
-		</li>
-		<li>Unordered list item 3</li>
-	</ul> 
-
-	<ol>
-		<li>Ordered list item 1</li>
-		<li>Ordered list item 2
-		<ol>
-			<li>Nested list</li>
-		</ol>
-		</li>
-		<li>Ordered list item 3</li>
-	</ol>
-	
-	<dl>
-		<dt>Description list item 1</dt>
-			<dd>Description details</dd>
-		<dt>Description list item 2</dt>
-			<dd>Description details</dd>
-		<dt>Description list item 3</dt>
-			<dd>Description details</dd>
-	</dl>
-
-	<pre><code>This is a code block! If your screen is too narrow, it will scroll.</code></pre>
-
-	<table>
-		<thead>
-			<tr> <th>This</th> <th>is</th> <th>a</th> <th>table.</th> </tr>
-		</thead>
-		<tbody>
-			<tr> <td>You</td> <td>can</td> <td>put</td> <td>columns</td> </tr>
-			<tr> <td>and</td> <td>rows</td> <td>in</td> <td>it.</td> </tr>
-		</tbody>
-	</table>
-			
-	<details>
-		<summary>Summary</summary> <p>Details</p> 
-	</details>
-
-	<blockquote>
-		<p>"Example blockquote paragraph."</p>
-		<cite>Example source</cite>
-	</blockquote> 
-
-</section>
-
-<div class="flex-box">
-
-	<section class="half"><p>This is a half-width section.</p></section>
-	<section class="half"><p>This is a half-width section.</p></section>
-	<section class="third"><p>This is a third-width section.</p></section>
-	<section class="twothird"><p>This is a two thirds-width section.</p></section>
-	<section class="twothird"><p>This is a three quarter-width section.</p></section>
-	<section class="quarter"><p>This is a quarter-width section.</p></section>
-
+<div class="intro" id="intro">
+  <h1>🐽 PIGXEL STUDIO</h1>
+  <div class="barra"><div class="progreso"></div></div>
+  <p>Cargando... (haz clic para saltar)</p>
 </div>
 
-</main>
+<div class="container">
+  <ul>
+    <li><a href="index.html">Inicio</a></li>
+    <li><a href="galeria.html">Galeria</a></li>
+    <li><a href="info.html">Informacion</a></li>
+  </ul>
 
-<div class="up"><a href="#top">to top</a></div>
+  <main>
 
-<footer>
-	amoeba.css by <a href="https://ribo.zone/free/layouts/">ribo.zone</a>
-</footer> 
+    <section id="inicio" class="fade-in">
+      <h1 style="font-family:'Press Start 2P'; color:var(--link); text-shadow:0 0 8px var(--link);text-align: center;">PIGXEL STUDIO</h1>
+      <p style="font-size:1.1rem; max-width:700px; margin:auto;text-align: center;">
+        Donde el <strong>diseño</strong> se encuentra con la <strong>animación</strong> en una sinfonía digital.
+      </p>
+    </section>
+
+    <section id="logros" class="fade-in">
+      <h2 style="text-align: center;">Nuestro Impacto</h2>
+      <div class="logros-grid">
+        <div class="logros-tarjeta">
+          <div class="logros-numero">150+</div>
+          <div class="logros-label">Animaciones Creadas</div>
+        </div>
+        <div class="logros-tarjeta">
+          <div class="logros-numero">25+</div>
+          <div class="logros-label">Proyectos Completados</div>
+          <div class="logros-label">Miembros del Equipo</div>
+        </div>
+        <div class="logros-tarjeta">
+          <div class="logros-numero">100%</div>
+          <div class="logros-label">Pasión por Animar</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="lema" class="fade-in">
+      <h2 style="text-align: center;" class="typewriter">Cada pixel cuenta. Cada movimiento tiene alma.</h2>
+    </section>
+
+    <section id="herramientas" class="fade-in">
+      <h2>Herramientas usadas</h2>
+      <p style="max-width:700px; margin:auto;">
+        En Pigxel Studio cultivamos líneas de código, sembramos ideas y cosechamos animaciones.  
+        Estas son las herramientas con las que alimentamos nuestro arte digital.
+      </p>
+
+      <div class="iconos" style="margin-top:2.5rem; display:flex; flex-wrap:wrap; justify-content:center; gap:2rem;">
+        <div class="herramienta" style="text-align:center; width:160px;">
+          <img src="https://cdn-icons-png.flaticon.com/512/732/732212.png" alt="HTML" style="width:70px; animation:flotar 4s ease-in-out infinite;">
+          <h3 style="font-family:'Press Start 2P'; color:#FF6F00; font-size:1.2rem; margin-top:0.8rem;">HTML</h3>
+        </div>
+
+        <div class="herramienta" style="text-align:center; width:160px;">
+          <img src="https://cdn-icons-png.flaticon.com/512/732/732190.png" alt="CSS" style="width:70px; animation:flotar 4s ease-in-out infinite 0.5s;">
+          <h3 style="font-family:'Press Start 2P'; color:#2196F3; font-size:1.2rem; margin-top:0.8rem;">CSS</h3>
+        </div>
+
+        <div class="herramienta" style="text-align:center; width:160px;">
+          <img src="https://cdn-icons-png.flaticon.com/512/5968/5968292.png" alt="JavaScript" style="width:70px; animation:flotar 4s ease-in-out infinite 1s;">
+          <h3 style="font-family:'Press Start 2P'; color:#F7DF1E; font-size:1.2rem; margin-top:0.8rem;">JavaScript</h3>
+        </div>
+
+        <div class="herramienta" style="text-align:center; width:160px;">
+          <img src="https://cdn-icons-png.flaticon.com/512/906/906324.png" alt="VS Code" style="width:70px; animation:flotar 4s ease-in-out infinite 2s;">
+          <h3 style="font-family:'Press Start 2P'; color:#007ACC; font-size:1.2rem; margin-top:0.8rem;">VS Code</h3>
+        </div>
+      </div>
+    </section>
+
+    <!-- NUEVA SECCIÓN INFORMATIVA -->
+    <section id="filosofia" class="fade-in">
+      <h2 style="text-align:center;">Nuestra Filosofía</h2>
+      <p style="max-width:750px; margin:auto; text-align:center; font-size:1.1rem;">
+        En <strong>Pigxel Studio</strong> creemos que cada proyecto es una oportunidad para demostrar lo aprendido.
+        No solo diseñamos, <strong>creamos experiencias visuales</strong> que conectan ideas con emociones.
+        Nuestro equipo combina arte y pasión para dar vida a cada movimiento.
+      </p>
+
+      <div style="display:flex; flex-wrap:wrap; justify-content:center; gap:2rem; margin-top:2.5rem;">
+        <div style="text-align:center; width:220px;">
+          <img src="https://cdn-icons-png.flaticon.com/512/1828/1828640.png" alt="Creatividad" style="width:70px; animation:flotar 4s ease-in-out infinite;">
+          <h3 style="font-family:'Press Start 2P'; color:#ff4081; font-size:1rem; margin-top:0.8rem;">Creatividad</h3>
+          <p style="font-size:0.9rem;">Cada idea nace desde la originalidad y el deseo de sorprender.</p>
+        </div>
+
+        <div style="text-align:center; width:220px;">
+          <img src="https://cdn-icons-png.flaticon.com/512/4436/4436481.png" alt="Innovación" style="width:70px; animation:flotar 4s ease-in-out infinite 0.5s;">
+          <h3 style="font-family:'Press Start 2P'; color:#00bcd4; font-size:1rem; margin-top:0.8rem;">Innovación</h3>
+          <p style="font-size:0.9rem;">Usamos herramientas modernas para lograr resultados únicos.</p>
+        </div>
+
+        <div style="text-align:center; width:220px;">
+          <img src="https://cdn-icons-png.flaticon.com/512/1000/1000997.png" alt="Colaboración" style="width:70px; animation:flotar 4s ease-in-out infinite 1s;">
+          <h3 style="font-family:'Press Start 2P'; color:#4caf50; font-size:1rem; margin-top:0.8rem;">Colaboración</h3>
+          <p style="font-size:0.9rem;">Unimos talentos y estilos para transformar ideas en animaciones vivas.</p>
+        </div>
+      </div>
+    </section>
+    <!-- FIN DE NUEVA SECCIÓN -->
+
+    <section id="equipo" class="fade-in">
+      <h2>Equipo Pigxel</h2>
+      <div class="equipo-grid">
+        <div class="miembro">
+          <img src="https://picsum.photos/150?random=11" alt="Josué">
+          <h3>Almonte Moran, Josué</h3>
+        </div>
+        <div class="miembro">
+          <img src="https://picsum.photos/150?random=12" alt="Bruno">
+          <h3>Colona Peña, Bruno</h3>
+        </div>
+        <div class="miembro">
+          <img src="https://picsum.photos/150?random=13" alt="Jair">
+          <h3>Gutierrez Chambi, Jair</h3>
+        </div>
+        <div class="miembro">
+          <img src="https://picsum.photos/150?random=14" alt="Juan">
+          <h3>Guzman Guerra, Juan</h3>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer style="text-align: center;">
+    <p>© 2025 Pigxel Studio — Animar es dar vida</p>
+  </footer>
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const intro = document.getElementById("intro");
+  const progreso = document.querySelector(".progreso");
+
+  const ocultarIntro = () => {
+    intro.classList.add("desvanecer");
+    setTimeout(() => intro.remove(), 800);
+  };
+
+  if (progreso) {
+    progreso.addEventListener("animationend", ocultarIntro);
+  }
+
+  intro.addEventListener("click", ocultarIntro);
+
+  const observador = new IntersectionObserver(
+    (entradas) => {
+      entradas.forEach((entrada) => {
+        if (entrada.isIntersecting) {
+          entrada.target.classList.add("visible");
+          observador.unobserve(entrada.target);
+        }
+      });
+    },
+    { threshold: 0.2 }
+  );
+
+  document.querySelectorAll(".fade-in").forEach((el) => observador.observe(el));
+});
+</script>
 
 </body>
 </html>
