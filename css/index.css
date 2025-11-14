@@ -8,7 +8,7 @@ body {
 }
 .container {
 	position: relative;
-	max-width: 1500px;
+	max-width: 1400px;
 	min-height: 100vh;
 	margin: 0 auto;
 	padding: 2rem;
@@ -60,6 +60,8 @@ h2 {
 	margin-top: 2rem;
 	border-bottom: 3px dotted #FFB17A;
 	padding-bottom: 0.5rem;
+  font-family: 'Press Start 2P';
+  color: #A04668;
 }
 h3 {
 	font-size: 1.3rem;
@@ -248,10 +250,6 @@ footer a:hover {
   margin-top: 5rem;
   text-align: center;
 }
-#herramientas h2 {
-  font-family: 'Press Start 2P';
-  color: #A04668;
-}
 .iconos {
   display: flex;
   justify-content: center;
@@ -264,41 +262,98 @@ footer a:hover {
   animation: flotar 4s ease-in-out infinite alternate;
 }
 
-/* NUEVAS SECCIONES */
-.logros-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 1.5rem;
-  margin: 2rem 0;
-}
-.logros-tarjeta {
-  background: white;
-  padding: 1.5rem;
-  border-radius: 15px;
-  text-align: center;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-  transition: transform 0.3s;
-}
-.logros-tarjeta:hover {
-  transform: translateY(-5px);
-}
-.logros-numero {
-  font-size: 2.5rem;
-  font-weight: bold;
-  color: #A04668;
-  font-family: 'Press Start 2P';
-}
-.logros-label {
-  color: #666;
-  margin-top: 0.5rem;
-}
-
-.desvanecer {
-  opacity: 0;
-  transition: opacity 0.8s ease;
-}
-
-
+  .desvanecer {
+    opacity: 0;
+    transition: opacity 0.8s ease;
+  }
+  
+  .servicios-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin: 2rem 0;
+  }
+  
+  .servicio-card {
+    background: rgba(255,255,255,0.5);
+    padding: 2rem;
+    border-radius: 20px;
+    text-align: center;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+    border: 3px solid transparent;
+  }
+  
+  .servicio-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 25px rgba(160,70,104,0.3);
+    border-color: #FFB17A;
+  }
+  
+  .servicio-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+  }
+  
+  .servicio-card h3 {
+    font-family: 'Press Start 2P';
+    color: #A04668;
+    font-size: 1rem;
+    margin-bottom: 0.8rem;
+  }
+  
+  .proceso-timeline {
+    position: relative;
+    padding: 2rem ;
+  }
+  
+  .proceso-step {
+    display: flex;
+    align-items: center;
+    margin: 2rem 0;
+    gap: 2rem;
+    opacity: 0;
+    transform: translateX(-30px);
+    transition: all 0.6s ease;
+  }
+  
+  .proceso-step:nth-child(even) {
+    flex-direction: row-reverse;
+    transform: translateX(30px);
+  }
+  
+  .proceso-numero {
+    min-width: 80px;
+    height: 80px;
+    background: linear-gradient(135deg, #FFB17A, #A04668);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Press Start 2P';
+    font-size: 2rem;
+    color: white;
+    box-shadow: 0 4px 15px rgba(160,70,104,0.4);
+  }
+  
+  .proceso-content {
+    flex: 1;
+    background: rgba(255,255,255,0.5);
+    padding: 1.5rem;
+    border-radius: 15px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+  }
+  
+  .proceso-content h3 {
+    font-family: 'Press Start 2P';
+    color: #A04668;
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+  }
+@keyframes contador {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
 @keyframes flotar {
   from { transform: translateY(0); }
   to { transform: translateY(-15px); }

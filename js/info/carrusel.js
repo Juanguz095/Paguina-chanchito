@@ -303,7 +303,7 @@ document.addEventListener('visibilitychange', () => {
   librerias: `
       <h2>Animaciones con Librerías Externas</h2>
         <p>
-        Las librerías de animación como <strong>Animate.css</strong>, <strong>GSAP</strong> y <strong>Anime.js</strong> facilitan crear animaciones complejas sin escribir todo desde cero en CSS o JavaScript.
+        Las librerías de animación como <strong>Animate.css</strong>,y <strong>Anime.js</strong> facilitan crear animaciones complejas sin escribir todo desde cero en CSS o JavaScript.
         </p>
 <div class="bloque-concepto">
   <h4>Animate.css</h4>
@@ -324,40 +324,6 @@ document.addEventListener('visibilitychange', () => {
     <li><code>animate__delay-2s</code>: retrasa la animación (2 segundos).</li>
     <li><code>animate__repeat-3</code>: repite la animación 3 veces.</li>
     <li>Se puede combinar con clases de tu propio CSS para personalizar duración o estilo.</li>
-  </ul>
-
-  <h4>GSAP (GreenSock Animation Platform)</h4>
-  <p>
-    GSAP es una librería potente para animaciones en JavaScript. Permite control total sobre duración, secuencias, repeticiones y easing (aceleración de la animación).
-  </p>
-
-  <pre><code>&lt;!-- Incluir GSAP --&gt;
-&lt;script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"&gt;&lt;/script&gt;
-
-&lt;div id="caja" style="width:100px; height:100px; background:#ff4081;"&gt;&lt;/div&gt;
-
-&lt;script&gt;
-  // Mueve la caja 300px a la derecha en 2 segundos y rota 360°
-  gsap.to("#caja", {
-    duration: 2,    // duración de la animación en segundos
-    x: 300,         // mover en el eje X
-    rotation: 360,  // rotación en grados
-    ease: "power2.inOut", // tipo de easing (aceleración)
-    repeat: 1,      // repite 1 vez
-    yoyo: true      // rebote hacia atrás
-  });
-&lt;/script&gt;</code></pre>
-
-  <p><em>Propiedades importantes de GSAP:</em></p>
-  <ul>
-    <li><code>duration</code>: duración de la animación.</li>
-    <li><code>x, y</code>: posición en píxeles en los ejes horizontal y vertical.</li>
-    <li><code>rotation</code>: rotación del elemento en grados.</li>
-    <li><code>scale</code>: escalado del elemento.</li>
-    <li><code>opacity</code>: transparencia.</li>
-    <li><code>ease</code>: control de aceleración (<code>linear</code>, <code>power1.inOut</code>, etc.).</li>
-    <li><code>repeat</code>: cuántas veces se repite.</li>
-    <li><code>yoyo</code>: si la animación se invierte al final.</li>
   </ul>
 
   <h4>Anime.js</h4>
@@ -401,70 +367,7 @@ document.addEventListener('visibilitychange', () => {
   </p>
 </div>
   `,
-  OtrasCosas: `
-    <h2>Otras cosas</h2>
-<div class="bloque-concepto">
-  <h3>Columnas de Texto</h3>
-  <p>
-    Las columnas permiten organizar el texto en varias secciones, facilitando la lectura.  
-    Aquí puedes ver un ejemplo de texto en una sola columna versus múltiples columnas:
-  </p>
 
-  <div style="display:flex; gap:20px; margin-top:1rem;">
-
-    <div style="border:1px solid #ccc; padding:10px; width:45%;">
-      <h4>Una sola columna</h4>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur efficitur metus a dolor facilisis, sed congue arcu fermentum. Donec vitae sapien non libero venenatis facilisis. Phasellus euismod sapien in sem ullamcorper.</p>
-    </div>
-
-    <div style="border:1px solid #ccc; padding:10px; width:45%; column-count:3; column-gap:15px;">
-      <h4>Múltiples columnas</h4>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur efficitur metus a dolor facilisis, sed congue arcu fermentum. Donec vitae sapien non libero venenatis facilisis. Phasellus euismod sapien in sem ullamcorper.</p>
-    </div>
-  </div>
-
-  <p style="margin-top:1rem;"><strong>Explicación del código:</strong></p>
-  <ul>
-    <li><code>column-count: 3;</code> → divide el contenido en 3 columnas.</li>
-    <li><code>column-gap: 15px;</code> → espacio entre cada columna.</li>
-    <li>Se puede combinar con <code>border</code>, <code>padding</code> y otros estilos para mejorar la presentación.</li>
-    <li>Ideal para artículos largos, listas o contenido que se quiera organizar visualmente.</li>
-  </ul>
-</div>
-
-<div class="bloque-concepto">
-  <h3>SVG vs Imagen Raster</h3>
-  <p>
-    Los SVG son gráficos vectoriales escalables, mientras que las imágenes como PNG o JPG son rasterizadas y pierden calidad al aumentar su tamaño.
-  </p>
-
-  <div style="display:flex; gap:20px; margin-top:1rem; align-items:center;">
-
-    <div style="width:45%; text-align:center;">
-      <h4>SVG (Vector) escalado x3</h4>
-      <svg width="450" height="450">
-        <circle cx="225" cy="225" r="180" fill="#7c4dff" stroke="#000" stroke-width="6"></circle>
-        <text x="225" y="240" font-size="60" text-anchor="middle" fill="#fff">SVG</text>
-      </svg>
-      <p>Se escala sin perder calidad</p>
-    </div>
-
-    <div style="width:45%; text-align:center;">
-      <h4>PNG (Raster) escalado x3</h4>
-      <img src="https://images.unsplash.com/photo-1660926655155-8b1f8f9079f5?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=870" width="450" alt="Raster">
-      <p>Se pixelará y pierde nitidez al aumentar</p>
-    </div>
-  </div>
-
-  <p style="margin-top:1rem;"><strong>Explicación del código:</strong></p>
-  <ul>
-    <li><code>&lt;svg width="450" height="450"&gt;</code> → permite escalar el gráfico vectorial sin pérdida de calidad.</li>
-    <li><code>&lt;circle&gt;</code> y <code>&lt;text&gt;</code> son elementos internos del SVG que mantienen sus proporciones.</li>
-    <li><code>&lt;img src="...png"&gt;</code> → al aumentar el tamaño más allá del original, se nota pixelación.</li>
-    <li>Demuestra por qué los SVG son recomendados para logotipos, iconos y gráficos escalables.</li>
-  </ul>
-</div>
-  `
 };
 
 document.getElementById("tema-css").innerHTML = temas.css;

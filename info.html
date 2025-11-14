@@ -299,6 +299,7 @@
   margin-bottom: 1.5rem;
   box-shadow: 0 0 10px #45a29e55;
   transition: transform 0.3s ease;
+  margin: 0px 200px 0px 200px;
 }
 
 .bloque-codigo:hover {
@@ -416,148 +417,91 @@
 </section>
 
 <section class="seccion">
-  <h2>Zona de Código</h2>
+  <h2>Aprende Jugando</h2>
   <p>
-    Bienvenido al laboratorio donde el código cobra vida. Aprende los fundamentos de JavaScript con ejemplos interactivos y estilo arcade.
+    Interactúa con estos módulos y observa cómo cobra vida el código.  
+    Cada bloque explica un concepto clave de JavaScript con ejemplos visuales.
   </p>
 
-  <!-- 🧠 Qué es JavaScript -->
-  <div class="bloque-codigo">
-    <h3>¿Qué es JavaScript?</h3>
-    <p>Es el lenguaje que da <strong>vida</strong> a las páginas web. Permite crear movimiento, lógica, y reacciones en tiempo real.</p>
-    <pre><code>// Ejemplo:
-document.body.style.background = "neon";</code></pre>
-  </div>
-
-  <!-- 💡 Variables -->
   <div class="bloque-codigo">
     <h3>Variables</h3>
-    <p>Son cajas donde guardas información. Pueden cambiar de valor mientras el programa se ejecuta.</p>
-    <pre><code>let nombre = "Pixel";
-let puntos = 100;
-puntos = puntos + 50;</code></pre>
+    <p>Guarda valores y cámbialos en tiempo real:</p>
+    <div class="demo">
+      <input id="nombreJugador" placeholder="Escribe tu nombre..." />
+      <button onclick="mostrarNombre()">Mostrar</button>
+      <p id="saludo"></p>
+    </div>
+    <pre><code>let nombre = prompt("¿Tu nombre?");
+alert("¡Bienvenido, " + nombre + "!");</code></pre>
   </div>
 
-  <!-- ⌨️ Entrada de datos -->
   <div class="bloque-codigo">
-    <h3>Entrada de datos</h3>
-    <p>Podemos pedirle datos al jugador (usuario) con <code>prompt()</code> y mostrarlos en pantalla con <code>alert()</code>.</p>
-    <pre><code>let nombre = prompt("¿Cuál es tu nombre?");
-alert("Bienvenido, " + nombre + "!");</code></pre>
-  </div>
-
-  <!-- 🔄 Estructuras secuenciales -->
-  <div class="bloque-codigo">
-    <h3>Estructuras secuenciales</h3>
-    <p>Son instrucciones que se ejecutan una tras otra, como niveles de un juego.</p>
-    <pre><code>let vida = 3;
-vida--;
-console.log("Vidas restantes: " + vida);</code></pre>
-  </div>
-
-  <!-- ⚙️ Condicional simple -->
-  <div class="bloque-codigo">
-    <h3>Estructura condicional simple</h3>
-    <p>Permite tomar decisiones según una condición.</p>
+    <h3>Condicional simple</h3>
+    <p>Decisiones rápidas, como si el jugador gana o pierde:</p>
+    <div class="demo">
+      <input type="number" id="puntos" placeholder="Ingresa tus puntos">
+      <button onclick="verificarPuntos()">Verificar</button>
+      <p id="resultadoPuntos"></p>
+    </div>
     <pre><code>if (puntos > 100) {
-  console.log("Subes de nivel!");
+  console.log("¡Subes de nivel!");
 }</code></pre>
   </div>
 
-  <!-- 🔀 Condicional compuesta -->
   <div class="bloque-codigo">
-    <h3>Estructura condicional compuesta</h3>
-    <p>Incluye un camino alternativo si la condición no se cumple.</p>
-    <pre><code>if (vida > 0) {
-  console.log("Sigues jugando!");
-} else {
-  console.log("Game Over");
+    <h3>Estructura repetitiva (for)</h3>
+    <p>Repite una acción varias veces:</p>
+    <div class="demo">
+      <button onclick="iniciarCiclo()">Iniciar ciclo</button>
+      <div id="zonaFor" class="zona-for"></div>
+    </div>
+    <pre><code>for (let i = 0; i < 5; i++) {
+  console.log("Intento " + i);
 }</code></pre>
   </div>
 
-  <!-- 🧩 Condicional anidada -->
-  <div class="bloque-codigo">
-    <h3>Estructura condicional anidada</h3>
-    <p>Permite evaluar varias condiciones dentro de otra.</p>
-    <pre><code>if (puntos > 500) {
-  if (nivel === 5) {
-    console.log("¡Has vencido al jefe final!");
-  }
-}</code></pre>
-  </div>
-
-  <!-- ⚖️ Operadores lógicos -->
-  <div class="bloque-codigo">
-    <h3>Operadores lógicos</h3>
-    <p><strong>&&</strong> (Y) y <strong>||</strong> (O) sirven para combinar condiciones.</p>
-    <pre><code>// Ambos deben cumplirse:
-if (vida > 0 && energia > 50) {
-  console.log("Puedes atacar!");
-}
-
-// Uno de los dos basta:
-if (nivel === 3 || nivel === 4) {
-  console.log("Zona peligrosa!");
-}</code></pre>
-  </div>
-
-  <!-- 🎮 Switch -->
   <div class="bloque-codigo">
     <h3>Estructura switch</h3>
-    <p>Permite elegir acciones según un valor exacto, como un menú del juego.</p>
-    <pre><code>let opcion = "jugar";
-
-switch (opcion) {
-  case "jugar":
-    console.log("Iniciando partida...");
-    break;
-  case "salir":
-    console.log("Saliendo del juego...");
-    break;
-  default:
-    console.log("Opción no válida.");
+    <p>Selecciona una acción según la opción:</p>
+    <div class="demo">
+      <select id="accion">
+        <option value="jugar">Jugar</option>
+        <option value="pausar">Pausar</option>
+        <option value="salir">Salir</option>
+      </select>
+      <button onclick="ejecutarAccion()">Ejecutar</button>
+      <p id="mensajeAccion"></p>
+    </div>
+    <pre><code>switch (opcion) {
+  case "jugar": console.log("Jugando"); break;
+  case "pausar": console.log("Pausado"); break;
 }</code></pre>
   </div>
 
-  <!-- 🔁 Ciclos while -->
   <div class="bloque-codigo">
-    <h3>Ciclo while</h3>
-    <p>Repite un bloque mientras se cumpla una condición.</p>
-    <pre><code>let contador = 0;
-while (contador < 5) {
-  console.log("Intento " + contador);
-  contador++;
+    <h3>Operadores lógicos</h3>
+    <p>Combina condiciones: ¿tienes vida y energía suficientes?</p>
+    <div class="demo">
+      <label>Vida: <input id="vida" type="number" min="0" max="100" value="50"></label>
+      <label>Energía: <input id="energia" type="number" min="0" max="100" value="50"></label>
+      <button onclick="evaluarCombate()">Evaluar</button>
+      <p id="resultadoCombate"></p>
+    </div>
+    <pre><code>if (vida > 0 && energia > 50) {
+  console.log("¡Puedes atacar!");
 }</code></pre>
   </div>
 
-  <!-- ♻️ Acumulador -->
   <div class="bloque-codigo">
-    <h3>Acumulador</h3>
-    <p>Sirve para sumar o reunir valores en un ciclo.</p>
-    <pre><code>let suma = 0;
+    <h3>Concepto de acumulador</h3>
+    <p>Suma puntos en cada ronda:</p>
+    <div class="demo">
+      <button onclick="sumarPuntos()">Jugar ronda 🎮</button>
+      <p id="contador">Puntos totales: 0</p>
+    </div>
+    <pre><code>let total = 0;
 for (let i = 1; i <= 5; i++) {
-  suma += i;
-}
-console.log("Total: " + suma);</code></pre>
-  </div>
-
-  <!-- 🔂 do/while -->
-  <div class="bloque-codigo">
-    <h3>Ciclo do/while</h3>
-    <p>Ejecuta al menos una vez antes de verificar la condición.</p>
-    <pre><code>let vida = 3;
-do {
-  console.log("Te queda " + vida + " vidas");
-  vida--;
-} while (vida > 0);</code></pre>
-  </div>
-
-  <!-- 🚀 for -->
-  <div class="bloque-codigo">
-    <h3>Ciclo for</h3>
-    <p>Ideal para repetir acciones un número exacto de veces.</p>
-    <pre><code>for (let i = 0; i < 3; i++) {
-  console.log("Ronda " + (i + 1));
+  total += i;
 }</code></pre>
   </div>
 </section>
@@ -600,11 +544,58 @@ const imagen = document.querySelector(".imagen-fondo");
 slider.addEventListener("input", () => {
   const valor = slider.value;
   svgCapa.style.width = valor + "%";
-  // A medida que se desliza, la imagen se pixela y hace zoom
   const escala = 1 + (valor / 150);
   const desenfoque = valor / 10;
   imagen.style.transform = `scale(${escala})`;
   imagen.style.filter = `blur(${desenfoque}px) contrast(${100 - valor / 3}%)`;
 });
+</script>
+<script>
+function mostrarNombre() {
+  const nombre = document.getElementById("nombreJugador").value;
+  document.getElementById("saludo").textContent = "¡Bienvenido, " + nombre + "!";
+}
+
+function verificarPuntos() {
+  const puntos = parseInt(document.getElementById("puntos").value);
+  document.getElementById("resultadoPuntos").textContent =
+    puntos > 100 ? "¡Subes de nivel!" : "💤 Necesitas más puntos";
+}
+
+function iniciarCiclo() {
+  const zona = document.getElementById("zonaFor");
+  zona.innerHTML = "";
+  for (let i = 0; i < 5; i++) {
+    const cubo = document.createElement("div");
+    cubo.className = "cubo";
+    zona.appendChild(cubo);
+  }
+}
+
+function ejecutarAccion() {
+  const opcion = document.getElementById("accion").value;
+  let mensaje = "";
+  switch (opcion) {
+    case "jugar": mensaje = "Iniciando partida..."; break;
+    case "pausar": mensaje = "Juego pausado."; break;
+    case "salir": mensaje = "Saliendo del juego..."; break;
+  }
+  document.getElementById("mensajeAccion").textContent = mensaje;
+}
+
+function evaluarCombate() {
+  const vida = parseInt(document.getElementById("vida").value);
+  const energia = parseInt(document.getElementById("energia").value);
+  const msg = (vida > 0 && energia > 50)
+    ? "Puedes atacar!"
+    : "No tienes suficiente energía o vida";
+  document.getElementById("resultadoCombate").textContent = msg;
+}
+
+let total = 0;
+function sumarPuntos() {
+  total += Math.floor(Math.random() * 10 + 1);
+  document.getElementById("contador").textContent = "Puntos totales: " + total;
+}
 </script>
 </html>
